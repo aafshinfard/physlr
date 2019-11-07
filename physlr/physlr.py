@@ -1725,6 +1725,8 @@ class Physlr:
             gin = self.read_graph([self.args.FILES[0]])
             with open(self.args.FILES[1]) as fin:
                 for line in fin:
+                    if not line.strip():
+                        break
                     junctions.append(line.split()[0])
             print(
                 int(timeit.default_timer() - t0),
