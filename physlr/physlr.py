@@ -1751,8 +1751,14 @@ class Physlr:
                 self.determine_molecules(
                     gin, u, junctions, self.args.strategy) for u in progress(gin))
         else:
-            Physlr.graph = gin
+            Physlr.graph = nx.freeze(gin)
+            if nx.is_frozen(gin):
+                print(int(timeit.default_timer() - t0), "Main is frozen", file=sys.stderr)
+            if nx.is_frozen(Physlr.graph):
+                print(int(timeit.default_timer() - t0), "Copy(?) is frozen", file=sys.stderr)
             Physlr.junctions = junctions
+            # pool = multiprocessing.Pool(self.args.threads)
+            # molecules = dict(pool.map(self.determine_molecules_process, progress(gin), chunksize=100))
             with multiprocessing.Pool(self.args.threads) as pool:
                 molecules = dict(pool.map(
                     self.determine_molecules_process, progress(gin), chunksize=100))
