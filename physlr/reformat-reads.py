@@ -67,8 +67,8 @@ if __name__ == "__main__":
 				print("Error: Expected consistent read headers among the 3 files, but found inconsistent headers at line: ", overall_cnt, file=sys.stderr)
 				print(r1_header,"\n",r2_header,"\n",i1_header)
 				sys.exit(1)
-			r1_printLine = r1_seq + b'\n' + r1_orient + b'\n' + r1_qual + b'\n'
-			r2_printLine = i1_seq + b'/2\n' + r2_seq + b'\n' + r2_orient + b'\n' + r2_qual + b'\n'
+			r1_printLine = r1_header + b'_' + i1_seq + b'/1\n' + r1_seq + b'\n' + r1_orient + b'\n' + r1_qual + b'\n'
+			r2_printLine = r2_header + b'_' + i1_seq + b'/2\n' + r2_seq + b'\n' + r2_orient + b'\n' + r2_qual + b'\n'
 			out_file.write(r1_printLine)
 			out_file.write(r2_printLine)
 			cnt = 0
