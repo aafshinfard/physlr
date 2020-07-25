@@ -45,35 +45,35 @@ if __name__ == "__main__":
 	#	for r2_header, r2_seq, r2_orient, r2_qual in read_fasta(r2_file):
 	#		for i1_header, i1_seq, _, _ in read_fasta(i1_file):
 			
-	for r1_line, r2_line, i1 line in zip(r1_file, r2_file, i1_file):
-			line = line[:-1]
-			if cnt == 1:
-					r1_header = r1_line
-					r2_header = r2_line
-					i1_header = i1_line
-			elif cnt == 2:
-					r1_seq = r1_line
-					r2_seq = r2_line
-					i1_seq = i1_line
-			elif cnt == 3:
-					r1_orient = r1_line
-					r2_orient = r2_line
-			elif cnt == 4:
-					r1_qual = r1_line
-					r2_qual = r2_line
-					if r1_header!=r2_header or r1_header!=i1_header:
-						print("Error: Expected consistent read headers among the 3 files, but found inconsistent headers at line: ", overall_cnt, file=sys.stderr)
-						sys.exit(1)
-					r1_printLine = r1_header + '_' + i1_seq +'/1\n' + r1_seq + '\n' + r1_orient + '\n' + r1_qual + '\n'
-					r2_printLine = r2_header + '_' + i1_seq +'/2\n' + r2_seq + '\n' + r2_orient + '\n' + r2_qual + '\n'
-					out_file.write(r1_printLine)
-					out_file.write(r2_printLine)
-					cnt = 0
-			cnt += 1
-			overall_cnt += 1
+	for r1_line, r2_line, i1_line in zip(r1_file, r2_file, i1_file):
+		if cnt == 1:
+			r1_header = r1_line[:-1]
+			r2_header = r2_line.split(" ")[:-1]
+			i1_header = i1_line
+		elif cnt == 2:
+			r1_seq = r1_line
+			r2_seq = r2_line
+			i1_seq = i1_line
+		elif cnt == 3:
+			r1_orient = r1_line
+			r2_orient = r2_line
+		elif cnt == 4:
+			r1_qual = r1_line
+			r2_qual = r2_line
+			if r1_header!=r2_header or r1_header!=i1_header:
+				print("Error: Expected consistent read headers among the 3 files, but found inconsistent headers at line: ", overall_cnt, file=sys.stderr)
+				print(r1_header,"\n",r2_header,"\n",i1_header)
+				sys.exit(1)
+			r1_printLine = r1_header + '_' + i1_seq +'/1\n' + r1_seq + '\n' + r1_orient + '\n' + r1_qual + '\n'
+			r2_printLine = r2_header + '_' + i1_seq +'/2\n' + r2_seq + '\n' + r2_orient + '\n' + r2_qual + '\n'
+			out_file.write(r1_printLine)
+			out_file.write(r2_printLine)
+			cnt = 0
+		cnt += 1
+		overall_cnt += 1
+
 
 	r1_file.close()
 	r2_file.close()
 	i1_file.close()
 	out_file.close()
-	
