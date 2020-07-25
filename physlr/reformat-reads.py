@@ -50,9 +50,9 @@ if __name__ == "__main__":
 		r2_line=r2_line[:-1]
 		i1_line=i1_line[:-1]
 		if cnt == 1:
-			r1_header = str.encode(r1_line.decode("utf-8").split(" ")[0])
-			r2_header = str.encode(r2_line.decode("utf-8").split(" ")[0])
-			i1_header = str.encode(i1_line.decode("utf-8").split(" ")[0])
+			r1_header = str.encode(r1_line.decode("ascii").split(" ")[0])
+			r2_header = str.encode(r2_line.decode("ascii").split(" ")[0])
+			i1_header = str.encode(i1_line.decode("ascii").split(" ")[0])
 		elif cnt == 2:
 			r1_seq = r1_line
 			r2_seq = r2_line
