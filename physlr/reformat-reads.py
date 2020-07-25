@@ -47,9 +47,9 @@ if __name__ == "__main__":
 			
 	for r1_line, r2_line, i1_line in zip(r1_file, r2_file, i1_file):
 		if cnt == 1:
-			r1_header = r1_line[:-1]
-			r2_header = r2_line.split(" ")[:-1]
-			i1_header = i1_line
+			r1_header = r1_line.decode("utf-8").split(" ")[1]
+			r2_header = r2_line.decode("utf-8").split(" ")[1]
+			i1_header = i1_line.decode("utf-8").split(" ")[1]
 		elif cnt == 2:
 			r1_seq = r1_line
 			r2_seq = r2_line
