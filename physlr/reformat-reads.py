@@ -46,6 +46,9 @@ if __name__ == "__main__":
 	#		for i1_header, i1_seq, _, _ in read_fasta(i1_file):
 			
 	for r1_line, r2_line, i1_line in zip(r1_file, r2_file, i1_file):
+		r1_line=r1_line[:-1]
+		r2_line=r2_line[:-1]
+		i1_line=i1_line[:-1]
 		if cnt == 1:
 			r1_header = str.encode(r1_line.decode("utf-8").split(" ")[0])
 			r2_header = str.encode(r2_line.decode("utf-8").split(" ")[0])
@@ -64,15 +67,15 @@ if __name__ == "__main__":
 				print("Error: Expected consistent read headers among the 3 files, but found inconsistent headers at line: ", overall_cnt, file=sys.stderr)
 				print(r1_header,"\n",r2_header,"\n",i1_header)
 				sys.exit(1)
-			type(r1_header)
-			type(i1_seq)
-			type(r1_seq)
-			type(r1_orient)
-			type(r1_qual)
-			r1_printLine = r1_header + '_' + i1_seq +'/1\n' + r1_seq + '\n' + r1_orient + '\n' + r1_qual + '\n'
-			r2_printLine = r2_header + '_' + i1_seq +'/2\n' + r2_seq + '\n' + r2_orient + '\n' + r2_qual + '\n'
-			out_file.write(r1_printLine)
-			out_file.write(r2_printLine)
+			print(type(r1_header))
+			print(type(i1_seq))
+			print(type(r1_seq))
+			print(type(r1_orient))
+			print(type(r1_qual))
+			#r1_printLine = r1_header + '_' + i1_seq +'/1\n' + r1_seq + '\n' + r1_orient + '\n' + r1_qual + '\n'
+			#r2_printLine = r2_header + '_' + i1_seq +'/2\n' + r2_seq + '\n' + r2_orient + '\n' + r2_qual + '\n'
+			#out_file.write(r1_printLine)
+			#out_file.write(r2_printLine)
 			cnt = 0
 		cnt += 1
 		overall_cnt += 1
