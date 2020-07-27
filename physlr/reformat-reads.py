@@ -30,8 +30,8 @@ if __name__ == "__main__":
 	if args.output_mode=="1":
 		out_file_R1R2 = gzip.open(out_file_prefix + '_barcoded_interleaved.fastq.gz', 'wb')
 	if args.output_mode=="2":
-		out_file_R1 = gzip.open(out_file_prefix + 'R1_barcoded.fastq.gz', 'wb')
-		out_file_R2 = gzip.open(out_file_prefix + 'R2_barcoded.fastq.gz', 'wb')
+		out_file_R1 = gzip.open(out_file_prefix + '_R1_barcoded.fastq.gz', 'wb')
+		out_file_R2 = gzip.open(out_file_prefix + '_R2_barcoded.fastq.gz', 'wb')
 	
 	r1_header = ''
 	r2_header = ''
