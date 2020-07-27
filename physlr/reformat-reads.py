@@ -44,7 +44,7 @@ if __name__ == "__main__":
 	r2_qual = ''
 	cnt = 1
 	read = 1
-	overall_cnt = 1
+	overall_cnt = 0
 			
 # 	r1_buff = [next(r1_file) for x in range(buffer_max)]
 # 	r2_buff = [next(r2_file) for x in range(buffer_max)]
@@ -122,18 +122,22 @@ if __name__ == "__main__":
 				r2_qual = r2_buff[i]
 				if args.output_mode=="1":
 					r1r2_out_buff += r1_header + b'_' + i1_seq + r1_seq + r1_orient + r1_qual
+					overall_cnt +=1
 					r1r2_out_buff += r2_header + b'_' + i1_seq + r2_seq + r2_orient + r2_qual
+					overall_cnt +=1
 				if args.output_mode=="2":
 					r1_out_buff += r1_header + b'_' + i1_seq + r1_seq + r1_orient + r1_qual
+					overall_cnt +=1
 					r2_out_buff += r2_header + b'_' + i1_seq + r2_seq + r2_orient + r2_qual
+					overall_cnt +=1
 			cnt += 1
 		if args.output_mode=="1":
 			out_file_R1R2.write(r1r2_out_buff)
-			print(" Wrote ", len(r1r2_out_buff) ," more lines", file=sys.stderr)
+			print(" Wrote ", len(r1r2_out_buff) ," more lines, ",overall_cnt +=1," lines in total", file=sys.stderr)
 		if args.output_mode=="2":
 			out_file_R1.write(r1_out_buff)
 			out_file_R2.write(r2_out_buff)
-			print(" Wrote ", len(r1_out_buff)+len(r2_out_buff) ," more lines", file=sys.stderr)
+			print(" Wrote ", len(r1_out_buff)+len(r2_out_buff) ," more lines, ",overall_cnt +=1," lines in total", file=sys.stderr)
 	
 	r1_file.close()
 	r2_file.close()
