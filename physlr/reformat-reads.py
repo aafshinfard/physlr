@@ -13,6 +13,7 @@ if __name__ == "__main__":
 	parser.add_argument("input_i1", help='Input file (I1) containing barcodes (gzipped)', type=str)
 	parser.add_argument("output_mode", help='mode of reformatting reads\n 1:single interleaved \n 2: two files (R1, R2)', type=str)
 	parser.add_argument("output_prefix", help='Prefix of the output file', type=str)
+	parser.add_argument("buffer_size", help='size of buffer (reads)', type=int, default=2000)
 	args = parser.parse_args()
 	
 	#in_file_name = args.input_file
@@ -59,7 +60,7 @@ if __name__ == "__main__":
 # out_file_R2 = gzip.open('bufftestR2.fastq.gz', 'wb')
 
 	buffer_cnt = 1
-	buffer_max = 4 * 1000
+	buffer_max = 4 * args.buffer_size
 
 # 	while True:
 # 		r1_buff = []
