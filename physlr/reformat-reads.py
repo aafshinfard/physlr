@@ -103,9 +103,6 @@ if __name__ == "__main__":
 		if r1_buff == []:
 			break
 		cnt = 1
-		print("i1_buff:\n")
-		for line in i1_buff:
-			print(line)
 		for i in range(len(r1_buff)):
 			if cnt == 1:
 				r1_header = str.encode(r1_buff[i].decode("ascii").split(" ")[0])
