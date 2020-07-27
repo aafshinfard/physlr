@@ -26,9 +26,9 @@ if __name__ == "__main__":
 	i1_file = gzip.open(i1_file_name, 'r')
 	
 	out_file_prefix = args.output_prefix
-	if output_mode=="1":
+	if args.output_mode=="1":
 		out_file_R1R2 = gzip.open(out_file_prefix + '_barcoded_interleaved.fastq.gz', 'wb')
-	if output_mode=="2":
+	if args.output_mode=="2":
 		out_file_R1 = gzip.open(out_file_prefix + '1_barcoded.fastq.gz', 'wb')
 		out_file_R2 = gzip.open(out_file_prefix + '_barcoded.fastq.gz', 'wb')
 	
@@ -122,16 +122,16 @@ if __name__ == "__main__":
 				cnt = 0
 				r1_qual = r1_buff[i]
 				r2_qual = r2_buff[i]
-				if output_mode=="1":
+				if args.output_mode=="1":
 					r1r2_out_buff += r1_header + b'_' + i1_seq + r1_seq + r1_orient + r1_qual
 					r1r2_out_buff += r2_header + b'_' + i1_seq + r2_seq + r2_orient + r2_qual
-				if output_mode=="2":
+				if args.output_mode=="2":
 					r1_out_buff += r1_header + b'_' + i1_seq + r1_seq + r1_orient + r1_qual
 					r2_out_buff += r2_header + b'_' + i1_seq + r2_seq + r2_orient + r2_qual
 			cnt += 1
-		if output_mode=="1":
+		if args.output_mode=="1":
 			out_file_R1R2.write(r1r2_out_buff)
-		if output_mode=="2":
+		if args.output_mode=="2":
 			out_file_R1.write(r1_out_buff)
 			out_file_R2.write(r2_out_buff)
 			
@@ -140,8 +140,8 @@ if __name__ == "__main__":
 	r1_file.close()
 	r2_file.close()
 	i1_file.close()
-	if output_mode=="1":
+	if args.output_mode=="1":
 		out_file_R1R2.close()
-	if output_mode=="2":
+	if args.output_mode=="2":
 		out_file_R1.close()
 		out_file_R2.close()
