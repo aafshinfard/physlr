@@ -100,6 +100,7 @@ if __name__ == "__main__":
 			if buffer_cnt == buffer_max + 1:
 				buffer_cnt = 1
 				break
+		print(" Read ", len(r1_buff) ," more lines", file=sys.stderr)
 		if r1_buff == []:
 			break
 		cnt = 1
@@ -128,12 +129,12 @@ if __name__ == "__main__":
 			cnt += 1
 		if args.output_mode=="1":
 			out_file_R1R2.write(r1r2_out_buff)
+			print(" Wrote ", len(r1r2_out_buff) ," more lines", file=sys.stderr)
 		if args.output_mode=="2":
 			out_file_R1.write(r1_out_buff)
 			out_file_R2.write(r2_out_buff)
-			
-
-
+			print(" Wrote ", len(r1_out_buff)+len(r2_out_buff) ," more lines", file=sys.stderr)
+	
 	r1_file.close()
 	r2_file.close()
 	i1_file.close()
