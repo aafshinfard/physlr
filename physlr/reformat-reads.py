@@ -75,7 +75,12 @@ if __name__ == "__main__":
 # 		print("\n and: \n")
 # 		if r1_buff == []:
 # 			break
-
+	r1_buff = [None] * buffer_max
+	r2_buff = [None] * buffer_max
+	i1_buff = [None] * buffer_max
+	r1r2_out_buff = [None] * buffer_max
+	r1_out_buff = [None] * buffer_max
+	r2_out_buff = [None] * buffer_max
 	while True:
 		r1_buff.clear()
 		r2_buff.clear()
