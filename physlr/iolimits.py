@@ -22,21 +22,21 @@ if __name__ == "__main__":
 	i1_seq = ''
 	cnt = 1	
 	with gzip.open(r1_file_name, 'r') as r1_file:
-	for r1_line in r1_file:
-		if cnt==1:
-			r1_header = str.encode(r1_buff[i].decode("ascii").split(" ")[0])
-			next(i1_file)
-		if cnt==2:
-			r1_seq = r1_line
-			i1_seq = next(i1_file)
-		if cnt==3:
-			r1_orient = r1_line
-			next(i1_file)
-		if cnt==4:
-			r1_qual = r1_line
-			next(i1_file)
-			out_4line = r1_header + b'_' + i1_seq + r1_seq + r1_orient + r1_qual
-			out_file_R1.write(out_byte)
-		cnt += 1
+		for r1_line in r1_file:
+			if cnt==1:
+				r1_header = str.encode(r1_buff[i].decode("ascii").split(" ")[0])
+				next(i1_file)
+			if cnt==2:
+				r1_seq = r1_line
+				i1_seq = next(i1_file)
+			if cnt==3:
+				r1_orient = r1_line
+				next(i1_file)
+			if cnt==4:
+				r1_qual = r1_line
+				next(i1_file)
+				out_4line = r1_header + b'_' + i1_seq + r1_seq + r1_orient + r1_qual
+				out_file_R1.write(out_byte)
+			cnt += 1
 	i1_file.close()
 	out_file_R1.close()
