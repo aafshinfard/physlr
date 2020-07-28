@@ -6,13 +6,12 @@ import gzip
 if __name__ == "__main__":
 	parser = argparse.ArgumentParser(description='Interleave and barcode TELL-seq read files (R1/R2/I1)')
 	parser.add_argument("input_r1", help='Input file containing R1 reads without barcode (gzipped)', type=str)
-	parser.add_argument("input_i1", help='Input file (I1) containing barcodes (gzipped)', type=str)
+	parser.add_argument("input_i1", help='Input file (I1) containing barcodes (gzipped)', type=bytes)
 	parser.add_argument("input_pair", help='If the input is -1 (R1) or -2 (R2)', type=str)
 	parser.add_argument("output_prefix", help='Prefix of the output file', type=str)
 	args = parser.parse_args()
 	
-	number = bytes(args.input_pair)
-	number = number + b'\n'
+	number = args.input_pair + b'\n'
 	r1_file_name = args.input_r1
 	r1_file = gzip.open(r1_file_name, 'r')
 	i1_file_name = args.input_i1
