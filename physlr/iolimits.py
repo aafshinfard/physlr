@@ -24,7 +24,7 @@ if __name__ == "__main__":
 	with gzip.open(r1_file_name, 'r') as r1_file:
 		for r1_line in r1_file:
 			if cnt==1:
-				r1_header = str.encode(r1_buff[i].decode("ascii").split(" ")[0])
+				r1_header = str.encode(r1_line.decode("ascii").split(" ")[0])
 				next(i1_file)
 			if cnt==2:
 				r1_seq = r1_line
