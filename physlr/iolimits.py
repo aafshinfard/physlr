@@ -9,7 +9,6 @@ if __name__ == "__main__":
 	parser.add_argument("input_i1", help='Input file (I1) containing barcodes (gzipped)', type=str)
 	parser.add_argument("output_prefix", help='Prefix of the output file', type=str)
 	args = parser.parse_args()
-	
 	r1_file_name = args.input_r1
 	r1_file = gzip.open(r1_file_name, 'r')
 	i1_file_name = args.input_i1
