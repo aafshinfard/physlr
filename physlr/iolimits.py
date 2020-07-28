@@ -37,6 +37,7 @@ if __name__ == "__main__":
 				next(i1_file)
 				out_4line = r1_header + b'_' + i1_seq + r1_seq + r1_orient + r1_qual
 				out_file_R1.write(out_4line)
-			cnt = 1
+				cnt = 0
+			cnt += 1
 	i1_file.close()
 	out_file_R1.close()
