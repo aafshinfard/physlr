@@ -7,8 +7,12 @@ if __name__ == "__main__":
 	parser = argparse.ArgumentParser(description='Interleave and barcode TELL-seq read files (R1/R2/I1)')
 	parser.add_argument("input_r1", help='Input file containing R1 reads without barcode (gzipped)', type=str)
 	parser.add_argument("input_i1", help='Input file (I1) containing barcodes (gzipped)', type=str)
+	parser.add_argument("input_pair", help='If the input is -1 (R1) or -2 (R2)', type=str)
 	parser.add_argument("output_prefix", help='Prefix of the output file', type=str)
 	args = parser.parse_args()
+	
+	number = bytes(args.input_pair)
+	number = number + b'\n'
 	r1_file_name = args.input_r1
 	r1_file = gzip.open(r1_file_name, 'r')
 	i1_file_name = args.input_i1
@@ -21,6 +25,7 @@ if __name__ == "__main__":
 	r1_qual = ''
 	i1_seq = ''
 	cnt = 1	
+	
 	with gzip.open(r1_file_name, 'r') as r1_file:
 		for r1_line in r1_file:
 			if cnt==1:
@@ -28,14 +33,14 @@ if __name__ == "__main__":
 				next(i1_file)
 			if cnt==2:
 				r1_seq = r1_line
-				i1_seq = next(i1_file)
+				i1_seq = next(i1_file)[:-1]
 			if cnt==3:
 				r1_orient = r1_line
 				next(i1_file)
 			if cnt==4:
 				r1_qual = r1_line
 				next(i1_file)
-				out_4line = r1_header + b'_' + i1_seq + r1_seq + r1_orient + r1_qual
+				out_4line = r1_header + b' BX:Z:' + i1_seq + number + r1_seq + r1_orient + r1_qual
 				out_file_R1.write(out_4line)
 				cnt = 0
 			cnt += 1
