@@ -138,11 +138,11 @@ if __name__ == "__main__":
 					overall_cnt +=4
 			cnt += 1
 		if args.output_mode=="1":
-			out_file_R1R2.write(r1r2_out_buff)
+			out_file_R1R2.write(bytes(r1r2_out_buff))
 			print(" Wrote ", overall_cnt," lines in total", file=sys.stderr)
 		if args.output_mode=="2":
-			out_file_R1.write(r1_out_buff)
-			out_file_R2.write(r2_out_buff)
+			out_file_R1.write(bytes(r1_out_buff))
+			out_file_R2.write(bytes(r2_out_buff))
 			print(" Wrote ",overall_cnt," lines in total", file=sys.stderr)
 	
 	r1_file.close()
