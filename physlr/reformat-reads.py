@@ -77,12 +77,12 @@ if __name__ == "__main__":
 # 			break
 
 	while True:
-		r1_buff = []
-		r2_buff = []
-		i1_buff = []
-		r1r2_out_buff = b''
-		r1_out_buff = b''
-		r2_out_buff = b''
+		r1_buff.clear()
+		r2_buff.clear()
+		i1_buff.clear()
+		r1r2_out_buff.clear()
+		r1_out_buff.clear()
+		r2_out_buff.clear()
 		for r1_line in r1_file:
 			r1_buff.append(r1_line)
 			buffer_cnt += 1
