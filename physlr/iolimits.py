@@ -6,21 +6,18 @@ import gzip
 if __name__ == "__main__":
 	parser = argparse.ArgumentParser(description='Interleave and barcode TELL-seq read files (R1/R2/I1)')
 	parser.add_argument("input_r1", help='Input file containing R1 reads without barcode (gzipped)', type=str)
-	#parser.add_argument("input_r2", help='Input file containing R2 reads without barcode (gzipped)', type=str)
 	parser.add_argument("input_i1", help='Input file (I1) containing barcodes (gzipped)', type=str)
-	parser.add_argument("output_mode", help='mode of reformatting reads\n 1:single interleaved \n 2: two files (R1, R2)', type=str)
 	parser.add_argument("output_prefix", help='Prefix of the output file', type=str)
-	parser.add_argument("buffer_size", help='size of buffer (reads)', type=int, default=2000)
 	args = parser.parse_args()
-
-  	r1_file_name = args.input_r1
+	
+	r1_file_name = args.input_r1
 	r1_file = gzip.open(r1_file_name, 'r')
 	i1_file_name = args.input_i1
 	i1_file = gzip.open(i1_file_name, 'r')
 	
 	out_file_prefix = args.output_prefix
 	out_file_R1 = gzip.open(out_file_prefix + '_R1_barcoded.fastq.gz', 'wb')
-  
+	
 	r1_header = ''
 	r1_seq = ''
 	r1_orient = ''
@@ -28,13 +25,7 @@ if __name__ == "__main__":
 	
 	i1_seq = ''
 	
-	cnt = 1
-	read = 1
-	overall_cnt = 0
-			
-	buffer_cnt = 1
-	buffer_max = 4 * args.buffer_size
-
+	cnt = 1	
 	with gzip.open(r1_file_name, 'r') as r1_file:
 	for r1_line in r1_file:
     		if cnt==1:
