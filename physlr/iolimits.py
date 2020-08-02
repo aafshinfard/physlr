@@ -32,7 +32,7 @@ if __name__ == "__main__":
 	r1_qual = ''
 	i1_seq = ''
 	cnt = 1	
-	
+	print("Reformatting started.", file=sys.stderr)
 	with gzip.open(r1_file_name, 'r') as r1_file:
 		for r1_line in r1_file:
 			if cnt==1:
