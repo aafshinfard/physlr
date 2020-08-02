@@ -18,7 +18,14 @@ if __name__ == "__main__":
 	i1_file_name = args.input_i1
 	i1_file = gzip.open(i1_file_name, 'r')
 	out_file_prefix = args.output_prefix
-	out_file_R1 = gzip.open(out_file_prefix + '_R1_barcoded.fastq.gz', 'wb')
+	if number == '-1'
+		out_file_R1 = gzip.open(out_file_prefix + '_R1_barcoded.fastq.gz', 'wb')
+	if number == '-2'
+		out_file_R1 = gzip.open(out_file_prefix + '_R2_barcoded.fastq.gz', 'wb')
+	if number != '-1' and number != '-2'
+		print('Error: parameter "input_pair" is not valid.', file=sys.stderr)
+		exit()
+		
 	r1_header = ''
 	r1_seq = ''
 	r1_orient = ''
