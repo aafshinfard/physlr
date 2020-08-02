@@ -9,6 +9,7 @@ if __name__ == "__main__":
 	parser.add_argument("input_i1", help='Input file (I1) containing barcodes (gzipped)', type=str)
 	parser.add_argument("input_pair", help='If the input is -1 (R1) or -2 (R2)', type=str)
 	parser.add_argument("output_prefix", help='Prefix of the output file', type=str)
+	parser.add_argument("input_state", help='Wether the input is raw (1) or TELL-read processed (2) [2]', type=int, default=2)
 	args = parser.parse_args()
 	
 	number = str.encode(args.input_pair, encoding="ascii") + b'\n'
@@ -28,7 +29,10 @@ if __name__ == "__main__":
 	with gzip.open(r1_file_name, 'r') as r1_file:
 		for r1_line in r1_file:
 			if cnt==1:
-				r1_header = str.encode(r1_line.decode("ascii").split(" ")[0], encoding="ascii")
+				if args.input_state==1
+					r1_header = str.encode(r1_line.decode("ascii").split(" ")[0], encoding="ascii")
+				if args.input_state==2
+					r1_header = str.encode(r1_line.decode("ascii").split(" ")[0][:-1], encoding="ascii")
 				next(i1_file)
 			if cnt==2:
 				r1_seq = r1_line
